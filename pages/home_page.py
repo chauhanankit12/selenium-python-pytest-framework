@@ -10,6 +10,7 @@ class HomePage:
 
 
     signup_login = (By.LINK_TEXT, "Signup / Login")
+    CLICK_CARD = (By.XPATH, "//a[@href='/view_cart']")
 
 
 
@@ -26,6 +27,13 @@ class HomePage:
     def click_signup_login(self):
         try:
             self.wait.until(EC.element_to_be_clickable(self.signup_login)).click()
+        except Exception as e:
+            print(f"Error clicking Signup/Login: {e}")
+            raise
+
+    def click_cart(self):
+        try:
+            self.wait.until(EC.element_to_be_clickable(self.CLICK_CARD)).click()
         except Exception as e:
             print(f"Error clicking Signup/Login: {e}")
             raise

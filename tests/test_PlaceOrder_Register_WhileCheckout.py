@@ -96,13 +96,11 @@ class TestPlaceOrderRegisterWhileCheckout(BaseClass):
 
             # Verify Review Order
             log.info("Verifying order review section")
-            assert checkout.verify_order_review()
+            assert checkout.verify_order_review("Sleeveless Dress")
+            assert checkout.verify_order_review("Summer White Top")
 
-            # Enter Comment
-            logger.info("Entering order comment")
-            checkout.enter_comment(
-                "Automation Order Testing"
-            )
+
+
 
             # Place Order
             log.info("Clicking Place Order")
@@ -110,19 +108,19 @@ class TestPlaceOrderRegisterWhileCheckout(BaseClass):
 
             # Payment Information
             log.info("Entering payment details")
-            payment.enter_name_on_card("Test User")
-            payment.enter_card_number("4111111111111111")
-            payment.enter_cvc("123")
-            payment.enter_expiry_month("12")
-            payment.enter_expiry_year("2030")
+            payment.enter_name_on_card()
+            payment.enter_card_number()
+            payment.enter_cvc()
+            payment.enter_expiry_month()
+            payment.enter_expiry_year()
 
-            payment.click_pay_and_confirm()
+            payment.click_on_pay_and_confirm_order()
 
             # Verify Success Message
             log.info("Verifying order success message")
             success_message = payment.get_success_message()
 
-            assert "Your order has been placed successfully!" in success_message
+            assert "Congratulations! Your order has been confirmed!" in success_message
 
             log.info("Order placed successfully")
 
